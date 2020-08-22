@@ -10,6 +10,15 @@ class Server
   protected $port;
   protected $socket;
 
+  public function __construct($hostname, $port)
+  {
+    $this->hostname = $hostname;
+    $this->port     = $port;
+
+    $this->setSocket();
+    $this->bind();
+  }
+
   protected function setSocket()
   {
     $this->socket = socket_create(AF_INET, SOCK_STREAM, getprotobyname('tcp'));
