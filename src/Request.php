@@ -1,4 +1,7 @@
 <?php
+
+namespace PHPWebServer;
+
 class Request
 {
   private string $rawRequest;
