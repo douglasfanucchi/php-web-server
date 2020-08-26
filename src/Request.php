@@ -43,8 +43,8 @@ class Request
 
   private function getHeaderRowsAsArray(string $rawHeader): array
   {
-    $rowsPattern = "/(.*)(\r\n|\r|\n)/";
-    preg_match_all($rowsPattern, $rawHeader, $matches);
+    $rowPattern = "/(.*)(\r\n|\r|\n)/";
+    preg_match_all($rowPattern, $rawHeader, $matches);
 
     return array_shift($matches);
   }
