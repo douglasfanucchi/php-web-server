@@ -30,7 +30,7 @@ class Request
     $rawHeader  = $this->getRawHeader($this->rawRequest);
     $headerRows = $this->getHeaderRowsAsArray($rawHeader);
 
-    $this->headers = $this->parseHeaderRows($headerRows);
+    $this->headers = $this->parseHeaderArrayRows($headerRows);
   }
 
   private function getRawHeader(string $rawRequest)
@@ -66,7 +66,7 @@ class Request
   }
 
 
-  private function parseHeaderRows(array $headerRows)
+  private function parseHeaderArrayRows(array $headerRows)
   {
     $headers = [];
 
