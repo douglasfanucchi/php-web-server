@@ -11,11 +11,11 @@ class Request
   public function __construct(string $rawRequest)
   {
     $this->rawRequest = $rawRequest;
-    $this->setMethod();
+    $this->setRequestMethod();
     $this->setHeader();
   }
 
-  private function setMethod()
+  private function setRequestMethod()
   {
     $methods = ["GET", "POST", "DELETE", "OPTIONS", "PUT"];
 
