@@ -28,7 +28,7 @@ class Request
   private function setHeader()
   {
     $rawHeader  = $this->getRawHeader($this->rawRequest);
-    $headerRows = $this->getRequestRows($rawHeader);
+    $headerRows = $this->getHeaderRowsAsArray($rawHeader);
 
     $this->headers = $this->parseHeaderRows($headerRows);
   }
@@ -41,7 +41,7 @@ class Request
     return $rawRequest;
   }
 
-  private function getRequestRows(string $rawHeader): array
+  private function getHeaderRowsAsArray(string $rawHeader): array
   {
     $rowsPattern = "/(.*)(\r\n|\r|\n)/";
     preg_match_all($rowsPattern, $rawHeader, $matches);
