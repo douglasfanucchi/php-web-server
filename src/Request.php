@@ -27,9 +27,8 @@ class Request
 
   private function setHeader()
   {
-    $rawRequestWithoutFirstRow = $this->removeRawRequestFirstRow($this->rawRequest);
-    $rawHeader                 = $this->getRawHeader($rawRequestWithoutFirstRow);
-    $headerRows                = $this->getRequestRows($rawHeader);
+    $rawHeader  = $this->getRawHeader($this->rawRequest);
+    $headerRows = $this->getRequestRows($rawHeader);
 
     $this->headers = $this->parseHeaderRows($headerRows);
   }
@@ -45,9 +44,10 @@ class Request
 
   private function getRawHeader(string $rawRequest)
   {
-    $bodyPattern = "/(\r\n\r\n|\r\r|\n\n)(.*)$/";
+    $rawRequest = $this->removeRawRequestFirstRow($rawRequest);
+    $rawRequest = $this->removeRawRequestBody($rawRequest);
 
-    return preg_replace($bodyPattern, "\r\n", $rawRequest);
+    return $rawRequest;
   }
 
   private function removeRawRequestBody(string $rawRequest)
