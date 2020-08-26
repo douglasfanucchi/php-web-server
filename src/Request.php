@@ -27,20 +27,20 @@ class Request
 
   private function setHeader()
   {
-    $rawRequestWithoutFirstRow = $this->removeRequestFirstRow();
+    $rawRequestWithoutFirstRow = $this->removeRawRequestFirstRow($this->rawRequest);
     $rawHeader                 = $this->getRawHeader($rawRequestWithoutFirstRow);
     $headerRows                = $this->getRequestRows($rawHeader);
 
     $this->headers = $this->parseHeaderRows($headerRows);
   }
 
-  private function removeRequestFirstRow()
+  private function removeRawRequestFirstRow(string $rawRequest)
   {
     $firstRowPattern = "/{$this->method}\ \/\ HTTP\/1.1(\r\n|\r|\n)/";
-    preg_match($firstRowPattern, $this->rawRequest, $matches);
+    preg_match($firstRowPattern, $rawRequest, $matches);
 
     $firstRow = array_shift($matches);
-    return str_replace($firstRow, "", $this->rawRequest);
+    return str_replace($firstRow, "", $rawRequest);
   }
 
   private function getRawHeader(string $rawRequest)
