@@ -50,6 +50,13 @@ class Request
     return preg_replace($bodyPattern, "\r\n", $rawRequest);
   }
 
+  private function removeRawRequestBody(string $rawRequest)
+  {
+    $bodyPattern = "/(\r\n\r\n|\r\r|\n\n)(.*)$/";
+
+    return preg_replace($bodyPattern, "\r\n", $rawRequest);
+  }
+
   private function getRequestRows(string $rawHeader): array
   {
     $rowsPattern = "/(.*)(\r\n|\r|\n)/";
