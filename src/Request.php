@@ -33,7 +33,7 @@ class Request
     $this->headers = $this->parseHeaderRows($headerRows);
   }
 
-  private function removeRawRequestFirstRow(string $rawRequest)
+  private function removeRawRequestFirstRow(string &$rawRequest)
   {
     $firstRowPattern = "/{$this->method}\ \/\ HTTP\/1.1(\r\n|\r|\n)/";
     preg_match($firstRowPattern, $rawRequest, $matches);
@@ -44,13 +44,13 @@ class Request
 
   private function getRawHeader(string $rawRequest)
   {
-    $rawRequest = $this->removeRawRequestFirstRow($rawRequest);
-    $rawRequest = $this->removeRawRequestBody($rawRequest);
+    $this->removeRawRequestFirstRow($rawRequest);
+    $this->removeRawRequestBody($rawRequest);
 
     return $rawRequest;
   }
 
-  private function removeRawRequestBody(string $rawRequest)
+  private function removeRawRequestBody(string &$rawRequest)
   {
     $bodyPattern = "/(\r\n\r\n|\r\r|\n\n)(.*)$/";
 
