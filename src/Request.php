@@ -27,20 +27,20 @@ class Request
 
   private function setHeader()
   {
-    $rawRequestWithoutFirstLine = $this->removeRequestFirstLine();
-    $rawHeader                  = $this->getRawHeader($rawRequestWithoutFirstLine);
-    $headerLines                = $this->getRequestLines($rawHeader);
+    $rawRequestWithoutFirstRow = $this->removeRequestFirstRow();
+    $rawHeader                 = $this->getRawHeader($rawRequestWithoutFirstRow);
+    $headerRows                = $this->getRequestRows($rawHeader);
 
-    $this->headers = $this->parseHeaderLines($headerLines);
+    $this->headers = $this->parseHeaderRows($headerRows);
   }
 
-  private function removeRequestFirstLine()
+  private function removeRequestFirstRow()
   {
-    $firstLinePattern = "/{$this->method}\ \/\ HTTP\/1.1(\r\n|\r|\n)/";
-    preg_match($firstLinePattern, $this->rawRequest, $matches);
+    $firstRowPattern = "/{$this->method}\ \/\ HTTP\/1.1(\r\n|\r|\n)/";
+    preg_match($firstRowPattern, $this->rawRequest, $matches);
 
-    $firstLine = array_shift($matches);
-    return str_replace($firstLine, "", $this->rawRequest);
+    $firstRow = array_shift($matches);
+    return str_replace($firstRow, "", $this->rawRequest);
   }
 
   private function getRawHeader(string $rawRequest)
@@ -50,22 +50,22 @@ class Request
     return preg_replace($bodyPattern, "\r\n", $rawRequest);
   }
 
-  private function getRequestLines(string $rawHeader): array
+  private function getRequestRows(string $rawHeader): array
   {
-    $linesPattern = "/(.*)(\r\n|\r|\n)/";
-    preg_match_all($linesPattern, $rawHeader, $matches);
+    $rowsPattern = "/(.*)(\r\n|\r|\n)/";
+    preg_match_all($rowsPattern, $rawHeader, $matches);
 
     return array_shift($matches);
   }
 
-  private function parseHeaderLines(array $headerLines)
+  private function parseHeaderRows(array $headerRows)
   {
     $headers = [];
 
-    foreach ($headerLines as $headerLine) {
-      $line = explode(": ", $headerLine);
-      $key = trim($line[0]);
-      $value = trim($line[1]);
+    foreach ($headerRows as $headerRow) {
+      $row   = explode(": ", $headerRow);
+      $key   = trim($row[0]);
+      $value = trim($row[1]);
 
       $headers[$key] = $value;
     }
