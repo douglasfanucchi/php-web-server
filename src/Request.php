@@ -55,14 +55,14 @@ class Request
     preg_match($firstRowPattern, $rawRequest, $matches);
 
     $firstRow = array_shift($matches);
-    return str_replace($firstRow, "", $rawRequest);
+    $rawRequest = str_replace($firstRow, "", $rawRequest);
   }
 
   private function removeRawRequestBody(string &$rawRequest)
   {
     $bodyPattern = "/(\r\n\r\n|\r\r|\n\n)(.*)$/";
 
-    return preg_replace($bodyPattern, "\r\n", $rawRequest);
+    $rawRequest = preg_replace($bodyPattern, "\r\n", $rawRequest);
   }
 
 
