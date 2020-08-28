@@ -7,12 +7,14 @@ class Request
   private string $rawRequest;
   public string $method;
   public array $headers;
+  private array $body;
 
   public function __construct(string $rawRequest)
   {
     $this->rawRequest = $rawRequest;
     $this->setRequestMethod();
     $this->setHeader();
+    $this->setBody();
   }
 
   private function setRequestMethod()
@@ -31,6 +33,21 @@ class Request
     $headerRows = $this->getHeaderRowsAsArray($rawHeader);
 
     $this->headers = $this->parseHeaderArrayRows($headerRows);
+  }
+
+  private function setBody()
+  {
+    $rawBody = $this->getRawBody($this->rawRequest);
+
+    $this->body = json_decode($rawBody, true);
+  }
+
+  private function getRawBody(string $rawRequest)
+  {
+    $headerBodyDivisor = "(" . PHP_EOL . ")";
+    $headerPattern = "/(.+){$headerBodyDivisor}/s";
+
+    return preg_replace($headerPattern, "", $rawRequest);
   }
 
   private function getRawHeader(string $rawRequest)
