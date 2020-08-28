@@ -56,6 +56,9 @@ $server->listen(function (Request $request) {
 ```
 
 This code, basically instantiate a server that is listening to the host 127.0.0.1 (localhost) and the port that is passed through terminal.
+
 Once you instantiate the PHPWebServer\Server you have to call the PHPWebServer\Server::listen method passing a pass a callback as argument.
+
 The callback will receive a PHPWebServer\Request object as parameter and the callback must return an instance of PHPWebServer\Response.
+
 The class PHPWebServer\Response must receive the data in stdClass format as first argument and the second the status code (not all status code are implemented).
