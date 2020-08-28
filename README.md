@@ -21,7 +21,7 @@ fetch(`http://127.0.0.1:${port}`, {
 ```
 
 If the request is successfull you should see something like this
-![Response Example](https://raw.githubusercontent.com/douglasfanucchi/php-web-server/master/assets/responsae-example.png)
+![Response Example](https://raw.githubusercontent.com/douglasfanucchi/php-web-server/master/assets/response-example.png)
 
 ## How does it work?
 
