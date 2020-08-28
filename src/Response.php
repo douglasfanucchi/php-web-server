@@ -18,4 +18,13 @@ class Response
   {
     $this->headers[$key] = $value;
   }
+
+  public function __toString()
+  {
+    $httpInfo = "HTTP/1.1 " . $this->getStatusCodeInfo();
+    $header   = $this->getRawHeader();
+    $body     = PHP_EOL . $this->responseJson;
+
+    return $httpInfo . $header . $body;
+  }
 }
