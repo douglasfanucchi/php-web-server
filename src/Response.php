@@ -50,5 +50,6 @@ class Response
   private function setDefaultHeaders()
   {
     $this->addHeader('Content-Type', 'application/json');
+    $this->addHeader('Access-Control-Allow-Origin', '*');
   }
 }
