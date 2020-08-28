@@ -12,6 +12,8 @@ class Response
   {
     $this->responseJson = json_encode($responseData);
     $this->statusCode = $statusCode;
+
+    $this->setDefaultHeaders();
   }
 
   public function addHeader(string $key, string $value)
@@ -43,5 +45,10 @@ class Response
     return array_reduce(array_keys($headers), function ($store, $key) use ($headers) {
       return $store . "{$key}: {$headers[$key]}" . PHP_EOL;
     }, '');
+  }
+
+  private function setDefaultHeaders()
+  {
+    $this->addHeader('Content-Type', 'application/json');
   }
 }
