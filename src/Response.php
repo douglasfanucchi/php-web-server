@@ -26,7 +26,7 @@ class Response
     $httpInfo = "HTTP/1.1 " . $this->getStatusCodeInfo() . PHP_EOL;
     $header   = $this->getRawHeader($this->headers);
     $body     = PHP_EOL . $this->responseJson;
-    echo $httpInfo . $header . $body;
+
     return $httpInfo . $header . $body;
   }
 
