@@ -7,7 +7,7 @@ class Request
   private string $rawRequest;
   public string $method;
   public array $headers;
-  private array $body;
+  public array $body;
 
   public function __construct(string $rawRequest)
   {
