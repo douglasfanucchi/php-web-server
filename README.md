@@ -46,13 +46,12 @@ $server->listen(function (Request $request) {
     return new Response($response, 200);
   }
 
-  $response->fullName      = $request->body['firstName'] . " " . $request->body['lastName'];
-  $response->requestMethod = "You sent a request with the " . $request->method . " method.";
-  $response->headers       = $request->headers;
+  $response->fullName       = $request->body['firstName'] . " " . $request->body['lastName'];
+  $response->requestMethod  = "You sent a request with the " . $request->method . " method.";
+  $response->requestHeaders = $request->headers;
 
   return new Response($response, 200);
 });
-
 ```
 
 This code, basically instantiate a server that is listening to the host 127.0.0.1 (localhost) and the port that is passed through terminal.

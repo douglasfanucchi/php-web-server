@@ -16,9 +16,9 @@ $server->listen(function (Request $request) {
     return new Response($response, 200);
   }
 
-  $response->fullName      = $request->body['firstName'] . " " . $request->body['lastName'];
-  $response->requestMethod = "You sent a request with the " . $request->method . " method.";
-  $response->headers       = $request->headers;
+  $response->fullName       = $request->body['firstName'] . " " . $request->body['lastName'];
+  $response->requestMethod  = "You sent a request with the " . $request->method . " method.";
+  $response->requestHeaders = $request->headers;
 
   return new Response($response, 200);
 });
