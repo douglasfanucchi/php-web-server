@@ -10,9 +10,15 @@ array_shift($argv);
 
 $server = new PHPWebServer\Server('127.0.0.1', (int) $argv[0]);
 $server->listen(function (Request $request) {
-
   $response = new stdClass();
-  $response->fullname = $request->body['name'] . " " . $request->body['lastname'];
+
+  if (empty($request->body)) {
+    return new Response($response, 200);
+  }
+
+  $response->fullName      = $request->body['firstName'] . " " . $request->body['lastName'];
+  $response->requestMethod = "You sent a request with the " . $request->method . " method.";
+  $response->headers       = $request->headers;
 
   return new Response($response, 200);
 });
