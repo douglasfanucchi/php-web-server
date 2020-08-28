@@ -39,7 +39,7 @@ class Request
   {
     $rawBody = $this->getRawBody($this->rawRequest);
 
-    $this->body = json_decode($rawBody, true);
+    $this->body = json_decode($rawBody, true) ?? [];
   }
 
   private function getRawBody(string $rawRequest)
