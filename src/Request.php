@@ -68,7 +68,7 @@ class Request
 
   private function removeRawRequestFirstRow(string &$rawRequest)
   {
-    $firstRowPattern = "/{$this->method}\ \/\ HTTP\/1.1(\r\n|\r|\n)/";
+    $firstRowPattern = "/^(.+)" . PHP_EOL . "/";
     preg_match($firstRowPattern, $rawRequest, $matches);
 
     $firstRow = array_shift($matches);
