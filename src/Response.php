@@ -27,4 +27,14 @@ class Response
 
     return $httpInfo . $header . $body;
   }
+
+  private function getStatusCodeInfo()
+  {
+    switch ($this->statusCode) {
+      case 200:
+        return '200 OK';
+      case 500:
+        return '500 ERROR';
+    }
+  }
 }
