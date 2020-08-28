@@ -1,0 +1,18 @@
+#!/usr/bin/php
+<?php
+
+use PHPWebServer\Request;
+use PHPWebServer\Response;
+
+require __DIR__ . '/vendor/autoload.php';
+
+array_shift($argv);
+
+$server = new PHPWebServer\Server('127.0.0.1', (int) $argv[0]);
+$server->listen(function (Request $request) {
+
+  $response = new stdClass();
+  $response->fullname = $request->body['name'] . " " . $request->body['lastname'];
+
+  return new Response($response, 200);
+});
