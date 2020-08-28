@@ -19,6 +19,9 @@ fetch(`http://127.0.0.1:${port}`, {
   .then((r) => r.json())
   .then(console.log);
 ```
+#### or you could test using cURL
+
+`$ curl localhost:PORT -X POST --data '{"firstName": "YourFirstName", "lastName": "YourLastName" }' | jq .`
 
 If the request is successfull you should see something like this
 ![Response Example](https://raw.githubusercontent.com/douglasfanucchi/php-web-server/master/assets/response-example.png)
