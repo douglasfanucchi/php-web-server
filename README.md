@@ -1,3 +1,5 @@
+![PHP Version](https://img.shields.io/badge/php%20version-7.4-green)
+
 # About
 
 This is just a project that implements a basic webserver with pure PHP. I made it in order to learn more about how the web works.
@@ -19,12 +21,13 @@ fetch(`http://127.0.0.1:${port}`, {
   .then((r) => r.json())
   .then(console.log);
 ```
-#### or you could test using cURL
-
-`$ curl localhost:PORT -X POST --data '{"firstName": "YourFirstName", "lastName": "YourLastName" }' | jq .`
 
 If the request is successfull you should see something like this
 ![Response Example](https://raw.githubusercontent.com/douglasfanucchi/php-web-server/master/assets/response-example.png)
+
+#### or you could test using cURL
+
+`$ curl localhost:PORT -X POST --data '{"firstName": "YourFirstName", "lastName": "YourLastName" }' | jq .`
 
 ## How does it work?
 
