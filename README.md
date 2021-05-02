@@ -3,7 +3,7 @@
 # About
 
 This is just a project that implements a basic webserver with pure PHP. I made it in order to learn more about how the web works.
-Do not use it in production, this is just an experimental project!
+Just an experimental project!
 
 ## How to install on your machine
 
